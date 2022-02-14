@@ -1,5 +1,11 @@
 # Write your MySQL query statement below
-select IFNULL(NULL, max(salary)) as SecondHighestSalary
-from Employee
-where salary not in (select max(salary) from Employee)
+SELECT MAX(Salary) as SecondHighestSalary
+FROM (
+SELECT *
+,dense_rank()over(order by Salary DESC) vRank
+FROM Employee
+
+)a
+where a.vRank = 2
+    
     
