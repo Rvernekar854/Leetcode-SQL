@@ -1,11 +1,10 @@
 # Write your MySQL query statement below
-SELECT MAX(Salary) as SecondHighestSalary
-FROM (
-SELECT *
-,dense_rank()over(order by Salary DESC) vRank
-FROM Employee
+with secondHighest as (
+    select salary ,
+    dense_rank() over(order by salary desc) as rnk
+    from Employee) 
 
-)a
-where a.vRank = 2
-    
+    select max(salary) as SecondHighestSalary 
+    from secondHighest
+    where secondHighest.rnk = 2
     
