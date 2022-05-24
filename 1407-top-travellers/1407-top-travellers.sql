@@ -1,6 +1,6 @@
 # Write your MySQL query statement below
 # sum of distance group by user_id
-# inner join id and user_id
+# left join id and user_id
 # distance desc, name asc
 
 Select name, Coalesce(sum(distance),0) as travelled_distance
